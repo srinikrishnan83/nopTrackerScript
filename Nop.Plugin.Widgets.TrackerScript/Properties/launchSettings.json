@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Nop.Plugin.Widgets.TrackerScript": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
