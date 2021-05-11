@@ -1,0 +1,87 @@
+﻿@model Nop.Plugin.Widgets.TrackerScript.Models.ConfigurationModel
+@{
+	Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+
+@{
+	//default values
+	var googleAnalytics_trackingScript = Html.Raw(JavaScriptEncoder.Default.Encode(Nop.Plugin.Widgets.TrackerScript.TrackerPlugin.default_TrackingScript));
+	var googleAdwords_conversionScript = Html.Raw(JavaScriptEncoder.Default.Encode(Nop.Plugin.Widgets.TrackerScript.TrackerPlugin.default_ConversionScript));
+	var googleAdwords_remarketingScript = Html.Raw(JavaScriptEncoder.Default.Encode(Nop.Plugin.Widgets.TrackerScript.TrackerPlugin.default_RemarketingScript));
+
+}
+<form asp-controller="WidgetsTracker" asp-action="Configure" method="post">
+	<div asp-validation-summary="ModelOnly" class="message-error"></div>
+	<div class="panel-group">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="col-md-3">
+						<nop-override-store-checkbox asp-for="ActivationKey_OverrideForStore" asp-input="ActivationKey" data-val="true" data-val-required="The field is required." asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+						<nop-label asp-for="ActivationKey" />
+					</div>
+					<div class="col-md-9">
+						<nop-editor asp-for="ActivationKey" />
+						<span asp-validation-for="ActivationKey" class="field-validation-valid" data-valmsg-for="ActivationKey" data-valmsg-replace="true"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-3">
+						<nop-override-store-checkbox asp-for="TrackingScript_OverrideForStore" asp-input="TrackingScript" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+						<nop-label asp-for="TrackingScript" />
+					</div>
+					<div class="col-md-9">
+						<nop-textarea asp-for="TrackingScript" />
+						<span asp-validation-for="TrackingScript"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-3">
+						<div class="label-wrapper">
+							<label class="control-label">
+								Tokens :
+							</label>
+						</div>
+					</div>
+					<div class="col-md-9">
+
+						<label class="control-label" style="text-align:left !important;">
+							{PRODID},{PAGETYPE},{VALUE},{CUSTOMER_EMAIL},{COUNTRY_CODE},{YYYY-MM-DD},{GTIN},{ORDER_ID},{ORDERTOTAL},{CURRENCY},{CATEGORYNAME}.
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-3">
+						<nop-override-store-checkbox asp-for="ConversionScript_OverrideForStore" asp-input="ConversionScript" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+						<nop-label asp-for="ConversionScript" />
+					</div>
+					<div class="col-md-9">
+						<nop-textarea asp-for="ConversionScript" />
+						<span asp-validation-for="ConversionScript"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-3">
+						<nop-override-store-checkbox asp-for="RemarketingScript_OverrideForStore" asp-input="RemarketingScript" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+						<nop-label asp-for="RemarketingScript" />
+					</div>
+					<div class="col-md-9">
+						<nop-textarea asp-for="RemarketingScript" />
+						<span asp-validation-for="RemarketingScript"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-3">
+						&nbsp;
+					</div>
+					<div class="col-md-9">
+						<input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Tracker Script",
+  "SystemName": "Widgets.TrackerScript",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "Aroopa Inc",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.TrackerScript.dll",
+  "Description": "This plugin integrates with Google Analytics. It keeps track of statistics about the visitors on your website."
+}
